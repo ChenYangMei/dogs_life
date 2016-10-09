@@ -9,7 +9,7 @@ jQuery(function() {
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId: '251063671962699',
+    appId: '251063671962699' || '251055175296882',
     cookie: true
   });
   $('#sign_in').click(function(e) {
