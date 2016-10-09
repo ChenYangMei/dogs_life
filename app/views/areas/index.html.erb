@@ -1,0 +1,14 @@
+
+<div class="">
+  <% @areas.each do |a| %>
+    <p><%= a.name %></p>
+    <p><%= a.address %></p>
+    <p><%= a.size %></p>
+    <% if a.open_at_all_times == true %>
+      <p>Open at All Times</p>
+    <% else %>
+      <p><%= a.open_times %></p>
+    <% end %>
+    <hr>
+  <% end %>
+</div>
