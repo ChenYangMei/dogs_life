@@ -1,1 +1,23 @@
-<h1>individual area</h1>
+<div class="">
+
+  <p><%= @area.name %></p>
+  <p><%= @area.address %></p>
+  <p>
+    <% @area.facilities.each do |facility| %>
+      <span><%= facility.name %></span> |
+    <% end %>
+  </p>
+  <p>
+    <% @area.terrains.each do |terrain| %>
+      <span><%= terrain.name %></span> |
+    <% end %>
+  </p>
+  <p><%= @area.size %></p>
+  <% if @area.open_at_all_times == true %>
+    <p>Open at All Times</p>
+  <% else %>
+    <p><%= @area.open_times %></p>
+  <% end %>
+  <hr>
+
+</div>

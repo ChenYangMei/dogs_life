@@ -12,10 +12,24 @@ class AreasController < ApplicationController
   end
 
   def create
+    # raise 'banana!'
+    # binding.pry
 
     @area = Area.new(area_params)
     @area.user_id = current_user.id
     @area.facility_ids = params[:area][:facility_ids]
+    @area.terrain_ids = params[:area][:terrain_ids]
+    @area.open_at_all_times = params[:open_at_all_times]
+
+    if @area.open_at_all_times == false
+      if params[:open_two].present? && params[:close_two].present? && params[:open_two] != "false" && params[:close_two] != "false"
+        @area.open_times = "#{params[:open_one]} to #{params[:close_one]}, #{params[:open_two]} to #{params[:close_two]}"
+      else
+        @area.open_times = "#{params[:open_one]} to #{params[:close_one]}"
+      end
+
+    end
+
 
     # if params[:area][:images].present?
     #     params[:area][:images].each do |photo|
@@ -63,6 +77,6 @@ class AreasController < ApplicationController
   private
 
   def area_params
-    params.require(:area).permit(:name, :open_times, :prohibited, :description, :image, :address, :info_link, :size, :user_id, :facility_ids => [] )
+    params.require(:area).permit(:name, :open_times, :prohibited, :description, :image, :address, :info_link, :size, :user_id, :facility_ids => [], :terrain_ids => [] )
   end
 end

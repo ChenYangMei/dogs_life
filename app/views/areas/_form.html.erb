@@ -11,6 +11,11 @@
     <%= select_tag(:official, options_for_select([['Yes', true], ['No', false]])) %>
   </p>
 
+  <p>
+    <%= f.label :address, "Address" %> <br>
+    <%= f.text_area :address, :required => true %>
+  </p>
+
   <p>Please select facilities:
     <%= hidden_field_tag "area[facility_ids][]", nil %>
       <% Facility.all.each do |facility| %>
@@ -18,22 +23,80 @@
     <% end %>
   </p>
 
-  <p>
-    <%= f.label :address, "Address" %>
-    <%= f.text_field :address, :required => true %>
+  <p>Please select Terrains:
+    <%= hidden_field_tag "area[terrain_ids][]", nil %>
+      <% Terrain.all.each do |terrain| %>
+        <div class="button"><%= check_box_tag "area[terrain_ids][]", terrain.id, @area.terrain_ids.include?(terrain.id), id: dom_id(terrain) %><%= label_tag dom_id(terrain), terrain.name %></div>
+    <% end %>
   </p>
 
-  <p>
+  <p onchange="openAtAllTimes(event);">
     <%= f.label :open_at_all_times, "Open at all times?" %>
     <%= select_tag(:open_at_all_times, options_for_select([['Yes', true], ['No', false]])) %>
   </p>
 
-  <p>
-    Open times:
-    <%= hidden_field_tag(:open_times) %>
-      <%= f.time_field :start_time %> or <%= select_tag( options_for_select([['Yes', true], ['No', false]])) %>
-    <% end %>
-  </p>
+  <!-- Open Times One -->
+  <div id="open_times_one">
+    <p id="open_one">
+      Open times:
+
+        <span id="openNumber" onchange="openNumber(event);" >
+          <%= time_field_tag :open_one %>
+        </span>
+
+        <span id="orOne">or</span>
+
+        <span id="openSun" onchange="openSun(event);"><%= select_tag( :open_one, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+
+        <button type="button" name="button" onclick="resetOpenOne(event)">Reset</button>
+    </p>
+    <p id="close_one">
+      Close times:
+
+      <span id="closeNumber" onchange="closeNumber(event);" >
+        <%= time_field_tag :close_one %>
+      </span>
+
+      <span id="orTwo">or</span>
+
+      <span id="closeSun" onchange="closeSun(event);"><%= select_tag( :close_one, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+
+      <button type="button" name="button" onclick="resetCloseOne(event)">Reset</button>
+    </p>
+
+    <button type="button" name="button" onclick="addAnother(event)">Add Another</button>
+  </div>
+
+  <!-- Open Times Two -->
+  <div id="open_times_two">
+    <p id="open_two">
+      Open times:
+
+        <span id="openNumberTwo" onchange="openNumberTwo(event);" >
+          <%= time_field_tag :open_two %>
+        </span>
+
+        <span id="orThree">or</span>
+
+        <span id="openSunTwo" onchange="openSunTwo(event);"><%= select_tag( :open_two, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+
+        <button type="button" name="button" onclick="resetOpenTwo(event)">Reset</button>
+    </p>
+    <p id="close_two">
+      Close times:
+
+      <span id="closeNumberTwo" onchange="closeNumberTwo(event);" >
+        <%= time_field_tag :close_two %>
+      </span>
+
+      <span id="orFour">or</span>
+
+      <span id="closeSunTwo" onchange="closeSunTwo(event);"><%= select_tag( :close_two, options_for_select([['', false],['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+
+      <button type="button" name="button" onclick="resetCloseTwo(event)">Reset</button>
+    </p>
+
+  </div>
 
   <p>
     <%= f.label :description, "Description" %><br>
