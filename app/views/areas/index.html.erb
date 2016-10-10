@@ -3,6 +3,11 @@
   <% @areas.each do |a| %>
     <p><%= a.name %></p>
     <p><%= a.address %></p>
+    <p>
+      <% a.facilities.each do |facility| %>
+        <span><%= facility.name %></span> |
+      <% end %>
+    </p>
     <p><%= a.size %></p>
     <% if a.open_at_all_times == true %>
       <p>Open at All Times</p>

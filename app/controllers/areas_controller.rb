@@ -3,13 +3,19 @@ class AreasController < ApplicationController
     @areas = Area.all
   end
 
+  def show
+    @area = Area.find params[:id]
+  end
+
   def new
     @area = Area.new
   end
 
   def create
+
     @area = Area.new(area_params)
-    @area.user_id = @current_user.id
+    @area.user_id = current_user.id
+    @area.facility_ids = params[:area][:facility_ids]
 
     # if params[:area][:images].present?
     #     params[:area][:images].each do |photo|
@@ -28,7 +34,6 @@ class AreasController < ApplicationController
         format.json { render json: @area.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to area_path(area)
   end
 
   def edit
@@ -58,6 +63,6 @@ class AreasController < ApplicationController
   private
 
   def area_params
-    params.require(:area).permit(:name, :open_times, :prohibited, :description, :image, :address, :info_link, :size, :user_id )
+    params.require(:area).permit(:name, :open_times, :prohibited, :description, :image, :address, :info_link, :size, :user_id, :facility_ids => [] )
   end
 end

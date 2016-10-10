@@ -6,19 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# t.string   "name"
-# t.string   "open_times",  default: "At all times."
-# t.text     "prohibited"
-# t.text     "description"
-# t.text     "image",       default:
-# [],                           array: true
-# t.string   "address"
-# t.float    "latitude"
-# t.float    "longitude"
-# t.text     "info_link"
-# t.boolean  "official",    default: true
-# t.string   "size"
-# t.integer  "user_id"
 
 Area.destroy_all
 

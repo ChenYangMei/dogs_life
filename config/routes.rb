@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'areas#index'
   resources :users
+  resources :areas
 
   # Session
   get '/login' => 'sessions#new', :as => "login"
