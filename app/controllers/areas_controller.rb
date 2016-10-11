@@ -5,7 +5,7 @@ class AreasController < ApplicationController
     if params[:search].present?
       @areas = Area.near(params[:search], 50)
     else
-      @areas
+      @areas = Area.all
     end
 
     respond_to do |format|
