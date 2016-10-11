@@ -1,6 +1,17 @@
 class AreasController < ApplicationController
+
   def index
-    @areas = Area.all
+
+    if params[:search].present?
+      @areas = Area.near(params[:search], 50)
+    else
+      @areas
+    end
+
+    respond_to do |format|
+      format.json {render :json => @areas}
+      format.html {}
+    end
   end
 
   def show
@@ -8,7 +19,12 @@ class AreasController < ApplicationController
   end
 
   def new
-    @area = Area.new
+    if current_user
+      @area = Area.new
+    else
+      redirect_to login_path
+    end
+
   end
 
   def create
@@ -30,7 +46,6 @@ class AreasController < ApplicationController
 
     end
 
-
     # if params[:area][:images].present?
     #     params[:area][:images].each do |photo|
     #       req = Cloudinary::Uploader.upload(photo)
@@ -41,7 +56,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save(area_params)
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
+        format.html { redirect_to @area}
         format.json { render json: @area, status: :ok, location: @area }
       else
         format.html { render :new }
@@ -59,7 +74,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.update(area_params)
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
+        format.html { redirect_to @area}
         format.json { render json: @area, status: :ok, location: @area }
       else
         format.html { render :edit }

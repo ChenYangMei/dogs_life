@@ -30,6 +30,11 @@
     <% end %>
   </p>
 
+  <p>
+    <%= f.label :size, "Approximate Size" %>
+    <%= select_tag(:size, options_for_select([['', nil], ['Small (Smaller than 2 Rugby Fields)', 'Small'], ['Medium (2 to 5 Rugby Fields)', 'Medium'], ['Big (5 to 10 Rugby Fields)', 'Big'], ['Enormous (Bigger than 10 Rugby Fields)', 'Enormous'] ])) %>
+  </p>
+
   <p onchange="openAtAllTimes(event);">
     <%= f.label :open_at_all_times, "Open at all times?" %>
     <%= select_tag(:open_at_all_times, options_for_select([['Yes', true], ['No', false]])) %>

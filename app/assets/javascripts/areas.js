@@ -1,5 +1,5 @@
 function openAtAllTimes(event) {
-  $("#open_times_one").fadeIn("slow");
+  $("#open_times_one").toggle("slow");
 }
 
 function addAnother(event) {
@@ -71,5 +71,4 @@ function resetCloseTwo(event){
 $(document).ready(function(){
   $("#open_times_one").hide();
   $("#open_times_two").hide();
-
 });
