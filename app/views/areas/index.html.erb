@@ -3,6 +3,8 @@
   <%= form_tag areas_path, :method => :get do %>
     <p>
       <%= text_field_tag :search, params[:search], size:"50", placeholder:"Find adventures for your Furiends" %>
+      <%#= hidden_field_tag :lat, "", :value => @lat %>
+      <%#= hidden_field_tag :long, "", :value => @long %>
       <%= submit_tag "Search", :name => nil %>
     </p>
   <% end %>

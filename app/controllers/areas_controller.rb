@@ -1,7 +1,6 @@
 class AreasController < ApplicationController
 
   def index
-
     if params[:search].present?
       @areas = Area.near(params[:search], 50)
     else

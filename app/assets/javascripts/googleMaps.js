@@ -16,11 +16,6 @@ var initAutoComplete = function () {
 };
 
 
-$(document).ready(function(){
-
-});
-
-
 function placeMarkers(data){
 
   var name = data.name;
@@ -63,8 +58,6 @@ function placeMarkers(data){
     infowindow.open(map, marker);
   });
 
-
-  // Directions Event
 }
 
 function handleData(response){
@@ -90,13 +83,37 @@ function fetchAreas(){
 }
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -32.904752, lng: 151.7201183},
-    zoom: 12,
+  var searchTerm;
+  var latitude;
+  var longitude;
+
+  if ($("#search").val() !== "") {
+    searchTerm = $("#search").val();
+  }else {
+    searchTerm = "Sydney, NSW";
+  }
+
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode( { 'address': searchTerm }, function(results, status){
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      latitude = results[0].geometry.location.lat();
+      longitude = results[0].geometry.location.lng();
+    }
+
+    map = new google.maps.Map(document.getElementById('map'), {
+
+      center: {
+        lat: latitude,
+        lng: longitude
+      },
+      zoom: 12,
+    });
+    fetchAreas();
+    initAutoComplete();
   });
 
-  fetchAreas();
-  initAutoComplete();
 }
 
 
@@ -111,6 +128,7 @@ function calcRoute(lat,lng) {
     zoom:7,
     center: destination
   };
+
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
   directionsDisplay.setMap(map);
 
