@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   root 'areas#index'
   resources :users
   resources :areas
+
+  resources :areas do
+    resources :reviews
+  end
 
   # Session
   get '/login' => 'sessions#new', :as => "login"

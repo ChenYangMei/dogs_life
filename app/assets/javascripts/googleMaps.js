@@ -5,6 +5,22 @@ var directionsDisplay;
 var myLat;
 var myLng;
 
+var initAutoComplete = function () {
+  var input = $('.search input[type="text"]')[0];
+  var options = {
+    componentRestrictions: {country: 'au'},
+    types: ['address']
+  };
+
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+};
+
+
+$(document).ready(function(){
+
+});
+
+
 function placeMarkers(data){
 
   var name = data.name;
@@ -80,10 +96,16 @@ function initMap() {
   });
 
   fetchAreas();
+  initAutoComplete();
 }
 
 
 function calcRoute(lat,lng) {
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+
+  directionsService = new google.maps.DirectionsService();
+
   var destination = new google.maps.LatLng(lat, lng);
   var mapOptions = {
     zoom:7,
@@ -126,11 +148,6 @@ function calcRoute(lat,lng) {
 
 $(document).ready(function(){
 
-  directionsService = new google.maps.DirectionsService();
-  directionsDisplay = new google.maps.DirectionsRenderer();
-
-  directionsService = new google.maps.DirectionsService();
-  console.log( directionsService );
   $("body").on('click', '#directions', function(){
     // console.log(this);
     var dirLat = parseFloat($(this).attr("data-lat"));

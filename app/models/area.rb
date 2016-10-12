@@ -4,6 +4,9 @@ class Area < ActiveRecord::Base
   belongs_to :user
   has_many :reviews
 
-  geocoded_by :address 
+  geocoded_by :address
   after_validation :geocode
+
+  ratyrate_rateable 'over_all', 'facility', 'safety'
+
 end

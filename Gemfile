@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'geocoder'
+gem 'ratyrate'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

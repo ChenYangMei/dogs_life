@@ -21,3 +21,27 @@
   <hr>
 
 </div>
+
+<div class="area_control">
+
+  <%= link_to("Edit |", edit_area_path) %>
+  <%= link_to(" Delete", area_path( @area.id ), :method => :delete, :data => {:confirm => "Are you sure to delete #{@area.name}?"}) %>
+
+</div>
+
+
+<div>
+  <div>
+    <%= imdb_style_rating_for @area, current_user%>
+  </div>
+  <br>
+  <div>
+    <% if current_user %>
+      Over All: <%= rating_for @area, "over_all" %>
+      <br>
+      Facilities: <%= rating_for @area, "facility" %>
+      <br>
+      Safety: <%= rating_for @area, "safety" %>
+    <% end %>
+  </div>
+</div>

@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :areas
   has_many :reviews
 
+  ratyrate_rater
+
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid).permit!).first_or_initialize.tap do |user|
