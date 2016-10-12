@@ -9,7 +9,7 @@ var initAutoComplete = function () {
   var input = $('.search input[type="text"]')[0];
   var options = {
     componentRestrictions: {country: 'au'},
-    types: ['address']
+    types: ['geocode']
   };
 
   var autocomplete = new google.maps.places.Autocomplete(input, options);
