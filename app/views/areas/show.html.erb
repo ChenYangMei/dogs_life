@@ -1,6 +1,7 @@
 <div class="">
 
   <p><%= @area.name %></p>
+
   <p><%= @area.address %></p>
   <p>
     <% @area.facilities.each do |facility| %>
@@ -30,18 +31,39 @@
 </div>
 
 
+<!-- Rating -->
 <div>
-  <div>
-    <%= imdb_style_rating_for @area, current_user%>
-  </div>
-  <br>
-  <div>
-    <% if current_user %>
-      Over All: <%= rating_for @area, "over_all" %>
-      <br>
-      Facilities: <%= rating_for @area, "facility" %>
-      <br>
-      Safety: <%= rating_for @area, "safety" %>
+  <span class="show_rate">Overall: <%= rating_for @area, "over_all", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
+  <span class="show_rate">Rating: <%= rating_for @area, "facility", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
+  <span class="show_rate">Safety: <%= rating_for @area, "safety", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
+</div>
+
+
+
+<!-- Reviews -->
+<div>
+  <div id="reviews_display">
+    <% @area.reviews.each do |review| %>
+      <div class="review">
+        <p>
+          <%= review.body %>
+        </p>
+        <p>
+          Created by: <%= review.user.name %>
+        </p>
+      </div>
     <% end %>
   </div>
+
+  <div id="reviews_input">
+    <%= form_for([@area, @review], remote: true) do |f| %>
+      <p>
+        <%= f.text_area :body %>
+      </p>
+      <p>
+        <input type="submit" value="Submit Review">
+      </p>
+    <% end %>
+  </div>
+
 </div>

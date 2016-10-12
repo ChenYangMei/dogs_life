@@ -8,3 +8,7 @@ body {
   width: 50vw;
   height: 50vw;
 }
+.show_rate {
+  display: inline-block;
+
+}

@@ -74,18 +74,22 @@ function fetchAreas(){
     type: 'GET',
     format: 'JSON',
   };
-  if ( $("#search").val() !== "" ) {
-    ajaxConfig.data = {
-      search: $("#search").val()
-    };
-  }
+  // if ( $("#search").val() !== "" ) {
+  //   ajaxConfig.data = {
+  //     search: $("#search").val()
+  //   };
+  // }
   $.ajax(ajaxConfig).done( handleData );
 }
 
+var searchTerm;
+var latitude;
+var longitude;
+
 function initMap() {
-  var searchTerm;
-  var latitude;
-  var longitude;
+  if ( $("#search").length === 0 || $("#map").length === 0 ) {
+    return false;
+  }
 
   if ($("#search").val() !== "") {
     searchTerm = $("#search").val();
@@ -159,6 +163,15 @@ function calcRoute(lat,lng) {
         $("body").append( currentStep.instructions );
         $("body").append( "<br />" );
       }
+
+      var destination = response.routes[0].legs[0].end_address;
+      var url = "https://www.google.com/maps?saddr=My+Location&daddr=" + destination;
+
+      var $a = $("<a></a>").attr({
+        href: url,
+        target: "_blank"
+      }).text("Live directions to here");
+      $("body").append( $a );
     });
   });
 
@@ -170,8 +183,7 @@ $(document).ready(function(){
     // console.log(this);
     var dirLat = parseFloat($(this).attr("data-lat"));
     var dirLng = parseFloat($(this).attr("data-lng"));
-    // console.log(typeof dirLat);
-    // console.log(dirLng);
+
     calcRoute(dirLat, dirLng);
   });
 });

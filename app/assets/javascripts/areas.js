@@ -48,6 +48,8 @@ function closeSunTwo(event) {
   $("#orFour").remove();
 }
 
+
+// Reset
 var openOne = $("#open_one").html();
 function resetOpenOne(event){
   $("#open_one").html(openOne);
@@ -71,4 +73,27 @@ function resetCloseTwo(event){
 $(document).ready(function(){
   $("#open_times_one").hide();
   $("#open_times_two").hide();
+
+  // Reviews
+  var handleData = function (e, data) {
+    // console.log(data);
+    var $display = $("<div>");
+    var $name = $("<p></p>").text("Created by: " + data.user.name);
+    var $body = $("<p></p>").text(data.body);
+    $display.prepend($name);
+    $display.prepend($body);
+
+    $("#reviews_display").append($display);
+
+    $("#reviews_input").hide();
+  };
+
+  var handleError = function (e, xhr) {
+    console.log("moo");
+    $("#reviews_display").text("Something went wrong!");
+  };
+
+  $("#new_review").on( "ajax:success", handleData )
+    .on( "ajax:error", handleError );
+
 });

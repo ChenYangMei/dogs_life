@@ -15,6 +15,7 @@ class AreasController < ApplicationController
 
   def show
     @area = Area.find params[:id]
+    @review = Review.new
   end
 
   def new
@@ -27,8 +28,6 @@ class AreasController < ApplicationController
   end
 
   def create
-    # raise 'banana!'
-    # binding.pry
 
     @area = Area.new(area_params)
     @area.user_id = current_user.id
