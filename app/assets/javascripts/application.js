@@ -18,5 +18,4 @@
 //= require jquery.cloudinary
 //= require dropzone.js
 //= require slick.js
-
 //= require_tree .

@@ -1,3 +1,16 @@
+$(document).ready(function(){
+  console.log("bla");
+  $("body").on('click', "#directions", function(){
+    console.log("hey");
+    // console.log(this);
+    var dirLat = parseFloat($(this).attr("data-lat"));
+    var dirLng = parseFloat($(this).attr("data-lng"));
+
+    calcRoute(dirLat, dirLng);
+  });
+});
+
+
 function openAtAllTimes(event) {
   $("#open_times_one").toggle("slow");
 }
@@ -71,6 +84,7 @@ function resetCloseTwo(event){
 }
 
 $(document).ready(function(){
+
   openOne = $("#open_one").html();
   closeOne = $("#close_one").html();
   openTwo = $("#open_two").html();
@@ -133,42 +147,42 @@ $(document).ready(function(){
 
   // Drop Zone
 
-  Dropzone.options.myAwesomeDropzone = {
-    paramName: "file", // The name that will be used to transfer the file
-    maxFilesize: 2, // MB
-    parallelUploads: 6,
-	  url: 'https://api.cloudinary.com/v1_1/cloud9/image/upload',
+  if ( $("form.dropzone").length !== 0) {
+    Dropzone.options.myAwesomeDropzone = {
+      paramName: "file", // The name that will be used to transfer the file
+      maxFilesize: 2, // MB
+      parallelUploads: 6,
+  	  url: 'https://api.cloudinary.com/v1_1/cloud9/image/upload',
 
-  };
+    };
 
-  var myDropzone = new Dropzone("form.dropzone", {
-    url: "https://api.cloudinary.com/v1_1/cloud9/image/upload"
-  });
-
-  myDropzone.on('sending', function (file, xhr, formData) {
-  	formData.append('api_key', 248327675289238);
-  	formData.append('timestamp', Date.now() / 1000 | 0);
-  	formData.append('upload_preset', 'dogslife');
-  });
-  myDropzone.on('success', function (file, response) {
-    // Send an AJAX request specifying which area it is
-    var currentURL = window.location.pathname;
-    var newURL = currentURL + "/new_image";
-
-    $.ajax({
-      url: newURL,
-      method: "POST",
-      dataType: "JSON",
-      data: {
-        response: response
-      }
-    }).done(function (data) {
-      console.log(data);
-      var content = $.cloudinary.image(data.public_id, { width: 200, height: 150, crop: 'fill' });
-      $(".image_new").append(content);
+    var myDropzone = new Dropzone($("form.dropzone")[0], {
+      url: "https://api.cloudinary.com/v1_1/cloud9/image/upload"
     });
 
-  });
+    myDropzone.on('sending', function (file, xhr, formData) {
+    	formData.append('api_key', 248327675289238);
+    	formData.append('timestamp', Date.now() / 1000 | 0);
+    	formData.append('upload_preset', 'dogslife');
+    });
+    myDropzone.on('success', function (file, response) {
+      // Send an AJAX request specifying which area it is
+      var currentURL = window.location.pathname;
+      var newURL = currentURL + "/new_image";
 
+      $.ajax({
+        url: newURL,
+        method: "POST",
+        dataType: "JSON",
+        data: {
+          response: response
+        }
+      }).done(function (data) {
+        var content = $.cloudinary.image(data.public_id, { width: 200, height: 150, crop: 'fill' });
+        $(".image_new").append(content);
+      });
+
+    });
+  }
 
 });

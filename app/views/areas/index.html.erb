@@ -1,31 +1,11 @@
-<div class="search">
-  <%= form_tag areas_path, :method => :get do %>
-    <p>
-      <%= text_field_tag :search, params[:search], size:"50", placeholder:"Find adventures for your Furiends" %>
-      <%= submit_tag "Search", :name => nil %>
-    </p>
-  <% end %>
-</div>
-
-<div id="map"></div>
-
-<div class="">
-  <% if @area %>
-    <% @areas.each do |a| %>
-      <p><%= a.name %></p>
-      <p><%= a.address %></p>
-      <p>
-        <% a.facilities.each do |facility| %>
-          <span><%= facility.name %></span> |
-        <% end %>
-      </p>
-      <p><%= a.size %></p>
-      <% if a.open_at_all_times == true %>
-        <p>Open at All Times</p>
-      <% else %>
-        <p><%= a.open_times %></p>
-      <% end %>
-      <hr>
+<main class="general">
+  <div class="search">
+    <%= form_tag areas_path, :method => :get, :id => 'search' do %>
+        <%= text_field_tag :search, params[:search], size:"50", placeholder:"Find adventures for your Furiends" %>
+        <%= submit_tag "Search", :name => nil %>
     <% end %>
-  <% end %>
-</div>
+
+  </div>
+
+  <div id="map"></div>
+</main>

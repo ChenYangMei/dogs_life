@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>DogsLife</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
 
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdTEkrpz-yt6uRQcanLhcxEOmMHLBYf78&callback=initMap&libraries=places" async defer></script>
 
@@ -19,17 +19,26 @@
 <body>
 
   <nav>
-    <div id="user-widget">
-      <%= link_to "A Dog's Life", root_path %>
-      <%= link_to "Add an Area", new_area_path %>
-      <% if current_user %>
-        Welcome <strong><%= current_user.name %><%= current_user.user_name %></strong>!
-        <%= link_to "Log out", logout_path, id: "log_out", :method => :delete %>
-      <% else %>
-        <%= link_to "Log In", login_path %>
-        <%= link_to "Sign Up", new_user_path %>
-      <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="one column" id="left">
+          <%= link_to image_tag("logo.gif"), root_path, class: "logo" %>
+        </div>
+
+        <div class="eleven column" id="right">
+          <%= link_to "Add an Area", new_area_path %>
+          <% if current_user %>
+            Welcome <strong><%= current_user.name %><%= current_user.user_name %></strong>!
+            <%= link_to "Log out", logout_path, id: "log_out", :method => :delete %>
+          <% else %>
+            <%= link_to "Log In", login_path %>
+            <%= link_to "Sign Up", new_user_path %>
+          <% end %>
+        </div>
     </div>
+
+    </div>
+
   </nav>
 
   <% if flash[:success] %>

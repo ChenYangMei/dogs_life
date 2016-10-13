@@ -91,8 +91,8 @@ function initMap() {
     return false;
   }
 
-  if ($("#search").val() !== "") {
-    searchTerm = $("#search").val();
+  if ($("input#search").val() !== "") {
+    searchTerm = $("input#search").val();
   }else {
     searchTerm = "Sydney, NSW";
   }
@@ -102,10 +102,11 @@ function initMap() {
   geocoder.geocode( { 'address': searchTerm }, function(results, status){
 
     if (status == google.maps.GeocoderStatus.OK) {
+      // debugger;
       latitude = results[0].geometry.location.lat();
       longitude = results[0].geometry.location.lng();
     }
-
+    console.log( latitude, longitude );
     map = new google.maps.Map(document.getElementById('map'), {
 
       center: {
@@ -158,33 +159,27 @@ function calcRoute(lat,lng) {
       if (status == 'OK') {
         directionsDisplay.setDirections(response);
       }
-      for ( var i = 0; i < response.routes[0].legs[0].steps.length; i++ ) {
-        var currentStep = response.routes[0].legs[0].steps[i];
-        $("body").append( currentStep.instructions );
-        $("body").append( "<br />" );
+
+      if ( response.routes[0] ) {
+        for ( var i = 0; i < response.routes[0].legs[0].steps.length; i++ ) {
+          var currentStep = response.routes[0].legs[0].steps[i];
+          $("body").append( currentStep.instructions );
+          $("body").append( "<br />" );
+        }
+
+        // Link to Google Directions
+        var destination = response.routes[0].legs[0].end_address;
+        var url = "https://www.google.com/maps?saddr=My+Location&daddr=" + destination;
+
+        var $a = $("<a></a>").attr({
+          href: url,
+          target: "_blank"
+        }).text("Live directions to here");
+        $("body").append( $a );
       }
-
-      var destination = response.routes[0].legs[0].end_address;
-      var url = "https://www.google.com/maps?saddr=My+Location&daddr=" + destination;
-
-      var $a = $("<a></a>").attr({
-        href: url,
-        target: "_blank"
-      }).text("Live directions to here");
-      $("body").append( $a );
     });
   });
 
 }
 
-$(document).ready(function(){
-
-  $("body").on('click', '#directions', function(){
-    // console.log(this);
-    var dirLat = parseFloat($(this).attr("data-lat"));
-    var dirLng = parseFloat($(this).attr("data-lng"));
-
-    calcRoute(dirLat, dirLng);
-  });
-
-});
+  console.log("hello");

@@ -1,53 +1,56 @@
-<div class="form">
-  <h1>Login</h1>
-  <%= form_tag login_path do %>
-    <p>
-      <%= label_tag :email %>
-      <%= email_field_tag :email, "", :required => true %>
-    </p>
-    <p>
-      <%= label_tag :password %>
-      <%= password_field_tag :password, "", :required => true %>
-    </p>
-    <%= submit_tag "Login" %>
-  <% end %>
-</div>
+<div class="general">
+  <div class="form">
+    <h1>Login</h1>
+    <%= form_tag login_path do %>
+      <p>
+        <%= label_tag :email %>
+        <%= email_field_tag :email, "", :required => true %>
+      </p>
+      <p>
+        <%= label_tag :password %>
+        <%= password_field_tag :password, "", :required => true %>
+      </p>
+      <%= submit_tag "Login" %>
+    <% end %>
+  </div>
 
-<div class="facebook_button">
-    <%= link_to "Sign In with Facebook", "/auth/facebook", id: "sign_in" %>
-</div>
+  <div class="facebook_button">
+      <%= link_to image_tag("http://cdn.surfnetkids.com/tech/wp-content/uploads/2015/05/loginfacebook.png"), "/auth/facebook", id: "sign_in" %>
+  </div>
 
-<script>
-jQuery(function() {
-  $('body').prepend('<div id="fb-root"></div>');
-  return $.ajax({
-    url: window.location.protocol + "//connect.facebook.net/en_US/all.js",
-    dataType: 'script',
-    cache: true
-  });
-});
-
-window.fbAsyncInit = function() {
-  FB.init({
-    appId: <%= Rails.env == "development" ? '251063671962699' : '251055175296882' %>,
-    cookie: true
-  });
-  $('#sign_in').click(function(e) {
-    e.preventDefault();
-    return FB.login(function(response) {
-      if (response.authResponse) {
-        return window.location = '/auth/facebook/callback';
-      }
+  <script>
+  jQuery(function() {
+    $('body').prepend('<div id="fb-root"></div>');
+    return $.ajax({
+      url: window.location.protocol + "//connect.facebook.net/en_US/all.js",
+      dataType: 'script',
+      cache: true
     });
   });
-  return $('#sign_out').click(function(e) {
-    FB.getLoginStatus(function(response) {
-      if (response.authResponse) {
-        return FB.logout();
-      }
-    });
-    return true;
-  });
-};
 
-</script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: <%= Rails.env == "development" ? '251063671962699' : '251055175296882' %>,
+      cookie: true
+    });
+    $('#sign_in').click(function(e) {
+      e.preventDefault();
+      return FB.login(function(response) {
+        if (response.authResponse) {
+          return window.location = '/auth/facebook/callback';
+        }
+      });
+    });
+    return $('#sign_out').click(function(e) {
+      FB.getLoginStatus(function(response) {
+        if (response.authResponse) {
+          return FB.logout();
+        }
+      });
+      return true;
+    });
+  };
+
+  </script>
+
+</div>

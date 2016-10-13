@@ -1,114 +1,116 @@
-<h1>Add a Leash Free Area</h1>
+<div class="general">
+  <h1>Add a Leash Free Area</h1>
 
-<%= form_for @area do |f| %>
-  <p>
-    <%= f.label :name, "Area Name" %>
-    <%= f.text_field :name, :required => true %>
-  </p>
+  <%= form_for @area do |f| %>
+    <p>
+      <%= f.label :name, "Area Name" %>
+      <%= f.text_field :name, :required => true %>
+    </p>
 
-  <p>
-    <%= f.label :official, "Is this a council approved leash free area?" %>
-    <%= select_tag(:official, options_for_select([['Yes', true], ['No', false]])) %>
-  </p>
+    <p>
+      <%= f.label :official, "Is this a council approved leash free area?" %>
+      <%= select_tag(:official, options_for_select([['Yes', true], ['No', false]])) %>
+    </p>
 
-  <p>
-    <%= f.label :address, "Address" %> <br>
-    <%= f.text_area :address, :required => true %>
-  </p>
+    <p>
+      <%= f.label :address, "Address" %> <br>
+      <%= f.text_area :address, :required => true %>
+    </p>
 
-  <p>Please select facilities:
-    <%= hidden_field_tag "area[facility_ids][]", nil %>
-      <% Facility.all.each do |facility| %>
-        <div class="button"><%= check_box_tag "area[facility_ids][]", facility.id, @area.facility_ids.include?(facility.id), id: dom_id(facility) %><%= label_tag dom_id(facility), facility.name %></div>
-    <% end %>
-  </p>
+    <p>Please select facilities:
+      <%= hidden_field_tag "area[facility_ids][]", nil %>
+        <% Facility.all.each do |facility| %>
+          <div class="button"><%= check_box_tag "area[facility_ids][]", facility.id, @area.facility_ids.include?(facility.id), id: dom_id(facility) %><%= label_tag dom_id(facility), facility.name %></div>
+      <% end %>
+    </p>
 
-  <p>Please select Terrains:
-    <%= hidden_field_tag "area[terrain_ids][]", nil %>
-      <% Terrain.all.each do |terrain| %>
-        <div class="button"><%= check_box_tag "area[terrain_ids][]", terrain.id, @area.terrain_ids.include?(terrain.id), id: dom_id(terrain) %><%= label_tag dom_id(terrain), terrain.name %></div>
-    <% end %>
-  </p>
+    <p>Please select Terrains:
+      <%= hidden_field_tag "area[terrain_ids][]", nil %>
+        <% Terrain.all.each do |terrain| %>
+          <div class="button"><%= check_box_tag "area[terrain_ids][]", terrain.id, @area.terrain_ids.include?(terrain.id), id: dom_id(terrain) %><%= label_tag dom_id(terrain), terrain.name %></div>
+      <% end %>
+    </p>
 
-  <p>
-    <%= f.label :size, "Approximate Size" %>
-    <%= select_tag(:size, options_for_select([['', nil], ['Small (Smaller than 2 Rugby Fields)', 'Small'], ['Medium (2 to 5 Rugby Fields)', 'Medium'], ['Big (5 to 10 Rugby Fields)', 'Big'], ['Enormous (Bigger than 10 Rugby Fields)', 'Enormous'] ])) %>
-  </p>
+    <p>
+      <%= f.label :size, "Approximate Size" %>
+      <%= select_tag(:size, options_for_select([['', nil], ['Small (Smaller than 2 Rugby Fields)', 'Small'], ['Medium (2 to 5 Rugby Fields)', 'Medium'], ['Big (5 to 10 Rugby Fields)', 'Big'], ['Enormous (Bigger than 10 Rugby Fields)', 'Enormous'] ])) %>
+    </p>
 
-  <p onchange="openAtAllTimes(event);">
-    <%= f.label :open_at_all_times, "Open at all times?" %>
-    <%= select_tag(:open_at_all_times, options_for_select([['Yes', true], ['No', false]])) %>
-  </p>
+    <p onchange="openAtAllTimes(event);">
+      <%= f.label :open_at_all_times, "Open at all times?" %>
+      <%= select_tag(:open_at_all_times, options_for_select([['Yes', true], ['No', false]])) %>
+    </p>
 
-  <!-- Open Times One -->
-  <div id="open_times_one">
+    <!-- Open Times One -->
+    <div id="open_times_one">
 
-    <p id="open_one">
-      Open times:
+      <p id="open_one">
+        Open times:
 
-        <span id="openNumber" onchange="openNumber(event);" >
-          <%= time_field_tag :open_one %>
+          <span id="openNumber" onchange="openNumber(event);" >
+            <%= time_field_tag :open_one %>
+          </span>
+
+          <span id="orOne">or</span>
+
+          <span id="openSun" onchange="openSun(event);"><%= select_tag( :open_one, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+
+          <button type="button" name="button" onclick="resetOpenOne(event)">Reset</button>
+      </p>
+
+      <p id="close_one">
+        Close times:
+
+        <span id="closeNumber" onchange="closeNumber(event);" >
+          <%= time_field_tag :close_one %>
         </span>
 
-        <span id="orOne">or</span>
+        <span id="orTwo">or</span>
 
-        <span id="openSun" onchange="openSun(event);"><%= select_tag( :open_one, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+        <span id="closeSun" onchange="closeSun(event);"><%= select_tag( :close_one, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
 
-        <button type="button" name="button" onclick="resetOpenOne(event)">Reset</button>
-    </p>
+        <button type="button" name="button" onclick="resetCloseOne(event)">Reset</button>
+      </p>
 
-    <p id="close_one">
-      Close times:
+      <button type="button" name="button" onclick="addAnother(event)">Add Another</button>
+    </div>
 
-      <span id="closeNumber" onchange="closeNumber(event);" >
-        <%= time_field_tag :close_one %>
-      </span>
+    <!-- Open Times Two -->
+    <div id="open_times_two">
+      <p id="open_two">
+        Open times:
 
-      <span id="orTwo">or</span>
+          <span id="openNumberTwo" onchange="openNumberTwo(event);" >
+            <%= time_field_tag :open_two %>
+          </span>
 
-      <span id="closeSun" onchange="closeSun(event);"><%= select_tag( :close_one, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+          <span id="orThree">or</span>
 
-      <button type="button" name="button" onclick="resetCloseOne(event)">Reset</button>
-    </p>
+          <span id="openSunTwo" onchange="openSunTwo(event);"><%= select_tag( :open_two, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
 
-    <button type="button" name="button" onclick="addAnother(event)">Add Another</button>
-  </div>
+          <button type="button" name="button" onclick="resetOpenTwo(event)">Reset</button>
+      </p>
+      <p id="close_two">
+        Close times:
 
-  <!-- Open Times Two -->
-  <div id="open_times_two">
-    <p id="open_two">
-      Open times:
-
-        <span id="openNumberTwo" onchange="openNumberTwo(event);" >
-          <%= time_field_tag :open_two %>
+        <span id="closeNumberTwo" onchange="closeNumberTwo(event);" >
+          <%= time_field_tag :close_two %>
         </span>
 
-        <span id="orThree">or</span>
+        <span id="orFour">or</span>
 
-        <span id="openSunTwo" onchange="openSunTwo(event);"><%= select_tag( :open_two, options_for_select([['', false], ['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
+        <span id="closeSunTwo" onchange="closeSunTwo(event);"><%= select_tag( :close_two, options_for_select([['', false],['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
 
-        <button type="button" name="button" onclick="resetOpenTwo(event)">Reset</button>
-    </p>
-    <p id="close_two">
-      Close times:
+        <button type="button" name="button" onclick="resetCloseTwo(event)">Reset</button>
+      </p>
 
-      <span id="closeNumberTwo" onchange="closeNumberTwo(event);" >
-        <%= time_field_tag :close_two %>
-      </span>
+    </div>
 
-      <span id="orFour">or</span>
-
-      <span id="closeSunTwo" onchange="closeSunTwo(event);"><%= select_tag( :close_two, options_for_select([['', false],['Sunrise', 'sunrise'], ['Sunset', 'sunset']])) %></span>
-
-      <button type="button" name="button" onclick="resetCloseTwo(event)">Reset</button>
+    <p>
+      <%= f.label :description, "Description" %><br>
+      <%= f.text_area :description, :required => true %>
     </p>
 
-  </div>
-
-  <p>
-    <%= f.label :description, "Description" %><br>
-    <%= f.text_area :description, :required => true %>
-  </p>
-
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
+</div>

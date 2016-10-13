@@ -1,0 +1,120 @@
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("background.jpg");
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+}
+nav{
+  text-align: center;
+  background-color: gainsboro;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-size: 1.2em;
+
+  a{
+    padding: 0 1em;
+    color: #0f406b;
+  }
+
+  .logo img{
+    width: 50px;
+    padding-top: 1em;
+  }
+
+  #left {
+    text-align: left;
+    display: inline-block;
+  }
+
+  #right {
+    text-align: right;
+    padding-right: 5em;
+    display: inline-block;
+  }
+}
+
+.search{
+  #search{
+    margin: 0, auto;
+  }
+}
+
+main {
+  margin: 8em auto;
+
+  .search {
+    margin: 1em auto;
+  }
+}
+
+.logo {
+  top: 1em;
+  left: 2em;
+  padding: 1em 2em;
+}
+
+#map {
+  margin: 2em auto;
+  width: 50vw;
+  height: 50vw;
+}
+.show_rate {
+  display: inline-block;
+}
+
+
+.show {
+  margin: 8em auto;
+
+  .area_image {
+    display: inline-block;
+    margin: 2em;
+    width: 50%;
+    float: left;
+    margin: 0 auto;
+
+    .image_display, .image_new{
+      width: 80%;
+      margin: 2em auto;
+    }
+
+    .dropZone{
+      width: 60%;
+      margin: 0 auto;
+    }
+  }
+
+  .area_info {
+    display: inline-block;
+    margin: 2em;
+    width: 50%;
+    float: right;
+    margin: 0 auto;
+
+    .area_details, .area_control, .area_rating, .area_review{
+      width: 80%;
+      margin: 2em auto;
+    }
+  }
+
+}
+
+
+.general {
+  width: 50%;
+  margin: 10vw auto;
+}
+
+#sign_in img{
+  width: 200px;
+}

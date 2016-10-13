@@ -1,92 +1,105 @@
-<div class="area_image">
+<div class="show row">
+  <div class="area_image">
 
-  <div class="image_display fade" id="images-div">
+    <div class="image_display fade" id="images-div">
+
+    </div>
+
+    <div class="image_new">
+
+    </div>
+
+    <div class="dropZone">
+      <form action="/file-upload" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">
+        <div class="fallback">
+          <input name="file" type="file" multiple />
+        </div>
+      </form>
+    </div>
 
   </div>
 
-  <div class="image_new">
-
-  </div>
-
-  <div class="dropZone">
-    <form action="/file-upload" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">
-      <div class="fallback">
-        <input name="file" type="file" multiple />
-      </div>
-    </form>
-  </div>
-
-</div>
-
-<div class="area_info">
-
-  <p><%= @area.name %></p>
-
-  <p><%= @area.address %></p>
-  <p>
-    <% @area.facilities.each do |facility| %>
-      <span><%= facility.name %></span> |
-    <% end %>
-  </p>
-  <p>
-    <% @area.terrains.each do |terrain| %>
-      <span><%= terrain.name %></span> |
-    <% end %>
-  </p>
-  <p><%= @area.size %></p>
-  <% if @area.open_at_all_times == true %>
-    <p>Open at All Times</p>
-  <% else %>
-    <p><%= @area.open_times %></p>
-  <% end %>
-  <hr>
-
-</div>
-
-<div class="area_control">
-
-  <%= link_to("Edit |", edit_area_path) %>
-  <%= link_to(" Delete", area_path( @area.id ), :method => :delete, :data => {:confirm => "Are you sure to delete #{@area.name}?"}) %>
-
-</div>
-
-
-<!-- Rating -->
-<div class="area_rating">
-  <div class="readonly">
-    <%= rating_for @area, 'over_all' %>
-  </div>
-  <span class="show_rate">Overall: <%= rating_for @area, "over_all", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
-  <span class="show_rate">Rating: <%= rating_for @area, "facility", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
-  <span class="show_rate">Safety: <%= rating_for @area, "safety", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
-</div>
 
 
 
-<!-- Reviews -->
-<div class="area_review">
-  <div id="reviews_display">
-    <% @area.reviews.each do |review| %>
-      <div class="review">
-        <p>
-          <%= review.body %>
-        </p>
-        <p>
-          Created by: <%= review.user.name %>
-        </p>
-      </div>
-    <% end %>
-  </div>
+  <div class="area_info">
 
-  <div id="reviews_input">
-    <%= form_for([@area, @review], remote: true) do |f| %>
-      <p>
-        <%= f.text_area :body %>
+    <div class="area_details">
+      <h4><%= @area.name %></h4>
+
+      <p>Size: <%= @area.address %></p>
+      <p>Facilities:
+        <% @area.facilities.each do |facility| %>
+          <span><%= facility.name %></span> |
+        <% end %>
       </p>
-      <p>
-        <input type="submit" value="Submit Review">
+      <p>Terrains:
+        <% @area.terrains.each do |terrain| %>
+          <span><%= terrain.name %></span> |
+        <% end %>
       </p>
-    <% end %>
+      <p><%= @area.size %></p>
+      <% if @area.open_at_all_times == true %>
+        <p>Open at All Times</p>
+      <% else %>
+        <p><%= @area.open_times %></p>
+      <% end %>
+    </div>
+
+
+    <div class="area_control">
+
+      <%= link_to("Edit |", edit_area_path) %>
+      <%= link_to(" Delete", area_path( @area.id ), :method => :delete, :data => {:confirm => "Are you sure to delete #{@area.name}?"}) %>
+
+    </div>
+
+
+    <!-- Rating -->
+    <div class="area_rating">
+      <h5>Rating</h5>
+      <div class="readonly">
+        <%= rating_for @area, 'over_all' %>
+        <%= rating_for @area, 'facility' %>
+        <%= rating_for @area, 'safety' %>
+      </div>
+      <span class="show_rate">Overall: <%= rating_for @area, "over_all", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
+      <span class="show_rate">Rating: <%= rating_for @area, "facility", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
+      <span class="show_rate">Safety: <%= rating_for @area, "safety", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
+    </div>
+
+
+
+    <!-- Reviews -->
+    <div class="area_review">
+      <h5>Reviews: </h5>
+      <div id="reviews_display">
+        <% @area.reviews.each do |review| %>
+          <div class="review">
+            <p>
+              <%= review.body %>
+            </p>
+            <p>
+              Created by: <%= review.user.name %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="reviews_input">
+        <%= form_for([@area, @review], remote: true) do |f| %>
+          <p>
+            <%= f.text_area :body %>
+          </p>
+          <p>
+            <input type="submit" value="Submit Review">
+          </p>
+        <% end %>
+      </div>
+
+    </div>
+
+
   </div>
 
 </div>
