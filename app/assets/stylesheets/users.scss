@@ -10,3 +10,7 @@
 .slick-prev:before, .slick-next:before {
   color: black;
 }
+
+.show_rate > div {
+  background-image: image-url('mid-star.png') !important;
+}
