@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :areas
 
   resources :areas do
+    post '/new_image' => 'images#create'
     resources :reviews
+    resources :images
   end
 
   # Session

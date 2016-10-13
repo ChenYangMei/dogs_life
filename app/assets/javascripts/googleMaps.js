@@ -186,4 +186,5 @@ $(document).ready(function(){
 
     calcRoute(dirLat, dirLng);
   });
+
 });

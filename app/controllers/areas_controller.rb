@@ -16,6 +16,14 @@ class AreasController < ApplicationController
   def show
     @area = Area.find params[:id]
     @review = Review.new
+    # 
+    # if params[:area][:images].present?
+    #     params[:area][:images].each do |photo|
+    #       req = Cloudinary::Uploader.upload(photo)
+    #       area.images << req['public_id']
+    #       area.save
+    #     end
+    # end
   end
 
   def new
@@ -43,14 +51,6 @@ class AreasController < ApplicationController
       end
 
     end
-
-    # if params[:area][:images].present?
-    #     params[:area][:images].each do |photo|
-    #       req = Cloudinary::Uploader.upload(photo)
-    #       area.images << req['public_id']
-    #       area.save
-    #     end
-    # end
 
     respond_to do |format|
       if @area.save(area_params)

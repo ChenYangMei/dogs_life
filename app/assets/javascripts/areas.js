@@ -71,8 +71,38 @@ function resetCloseTwo(event){
 }
 
 $(document).ready(function(){
+
   $("#open_times_one").hide();
   $("#open_times_two").hide();
+
+  $.cloudinary.config({ cloud_name: 'drubv9lgc', api_key: '248327675289238'});
+
+  // Display Image
+
+  if ($("#images-div").length > 0) {
+    var currentURL = window.location.pathname;
+    var newURL = currentURL + '/images';
+    console.log(newURL);
+    $.ajax({
+      url: newURL,
+      method: "GET",
+      dataType: "JSON"
+    }).done(function (data) {
+      for (var i = 0; i < data.images.length; i++) {
+        var image = $.cloudinary.image(data.images[i].public_id, {class: "fade"});
+        $("#images-div").append(image);
+      }
+      $('.fade').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        arrows: true,
+        cssEase: 'linear'
+      });
+    });
+  }
+
 
   // Reviews
   var handleData = function (e, data) {
@@ -95,5 +125,46 @@ $(document).ready(function(){
 
   $("#new_review").on( "ajax:success", handleData )
     .on( "ajax:error", handleError );
+
+
+  // Drop Zone
+
+  Dropzone.options.myAwesomeDropzone = {
+    paramName: "file", // The name that will be used to transfer the file
+    maxFilesize: 2, // MB
+    parallelUploads: 6,
+	  url: 'https://api.cloudinary.com/v1_1/cloud9/image/upload',
+
+  };
+
+  var myDropzone = new Dropzone("form.dropzone", {
+    url: "https://api.cloudinary.com/v1_1/cloud9/image/upload"
+  });
+
+  myDropzone.on('sending', function (file, xhr, formData) {
+  	formData.append('api_key', 248327675289238);
+  	formData.append('timestamp', Date.now() / 1000 | 0);
+  	formData.append('upload_preset', 'dogslife');
+  });
+  myDropzone.on('success', function (file, response) {
+    // Send an AJAX request specifying which area it is
+    var currentURL = window.location.pathname;
+    var newURL = currentURL + "/new_image";
+
+    $.ajax({
+      url: newURL,
+      method: "POST",
+      dataType: "JSON",
+      data: {
+        response: response
+      }
+    }).done(function (data) {
+      console.log(data);
+      var content = $.cloudinary.image(data.public_id, { width: 200, height: 150, crop: 'fill' });
+      $(".image_new").append(content);
+    });
+
+  });
+
 
 });
