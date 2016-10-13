@@ -50,27 +50,31 @@ function closeSunTwo(event) {
 
 
 // Reset
-var openOne = $("#open_one").html();
+var openOne;
 function resetOpenOne(event){
   $("#open_one").html(openOne);
 }
 
-var closeOne = $("#close_one").html();
+var closeOne;
 function resetCloseOne(event){
   $("#close_one").html(closeOne);
 }
 
-var openTwo = $("#open_two").html();
+var openTwo;
 function resetOpenTwo(event){
   $("#open_two").html(openTwo);
 }
 
-var closeTwo = $("#close_two").html();
+var closeTwo;
 function resetCloseTwo(event){
   $("#close_two").html(closeTwo);
 }
 
 $(document).ready(function(){
+  openOne = $("#open_one").html();
+  closeOne = $("#close_one").html();
+  openTwo = $("#open_two").html();
+  closeTwo = $("#close_two").html();
 
   $("#open_times_one").hide();
   $("#open_times_two").hide();
