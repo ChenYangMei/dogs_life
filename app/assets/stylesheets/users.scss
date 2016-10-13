@@ -11,6 +11,6 @@
   color: black;
 }
 
-.show_rate > div {
+.show_rate > div:not(.star) {
   background-image: image-url('mid-star.png') !important;
 }
