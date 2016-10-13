@@ -1,4 +1,8 @@
+var myDropzone = false;
+
 $(document).ready(function(){
+  Dropzone.autoDiscover = false;
+
   console.log("bla");
   $("body").on('click', "#directions", function(){
     console.log("hey");
@@ -156,7 +160,7 @@ $(document).ready(function(){
 
     };
 
-    var myDropzone = new Dropzone($("form.dropzone")[0], {
+    myDropzone = new Dropzone($("form.dropzone")[0], {
       url: "https://api.cloudinary.com/v1_1/cloud9/image/upload"
     });
 
