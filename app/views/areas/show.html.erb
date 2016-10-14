@@ -82,7 +82,11 @@
               <%= review.body %>
             </p>
             <p>
-              Created by: <%= review.user.name %>
+              <% if review.user.name.present? %>
+                Created by: <%= review.user.name %>
+              <% elsif review.user.user_name.present?%>
+                Created by: <%= review.user.user_name %>
+              <% end %>
             </p>
           </div>
         <% end %>

@@ -130,7 +130,13 @@ $(document).ready(function(){
   var handleData = function (e, data) {
     // console.log(data);
     var $display = $("<div>");
-    var $name = $("<p></p>").text("Created by: " + data.user.name);
+    var $name;
+    if (data.name) {
+      $name = $("<p></p>").text("Created by: " + data.user.name);
+    }else{
+      $name = $("<p></p>").text("Created by: " + data.user.user_name);
+    }
+
     var $body = $("<p></p>").text(data.body);
     $display.prepend($name);
     $display.prepend($body);
