@@ -128,7 +128,7 @@ $(document).ready(function(){
 
   // Reviews
   var handleData = function (e, data) {
-    // console.log(data);
+    console.log(data);
     var $display = $("<div>");
     var $name;
     if (data.name !== null) {
