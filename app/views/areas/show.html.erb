@@ -59,10 +59,12 @@
     <div class="area_rating">
       <h5>Rating</h5>
       <div class="readonly">
-        <%= rating_for @area, 'over_all' %>
-        <%= rating_for @area, 'facility' %>
-        <%= rating_for @area, 'safety' %>
+        Over All: <%= rating_for @area, 'over_all' %>
+        Facilities: <%= rating_for @area, 'facility' %>
+        Safety: <%= rating_for @area, 'safety' %>
       </div>
+      <br>
+      <h5>Rate this Park Here:</h5>
       <span class="show_rate">Overall: <%= rating_for @area, "over_all", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
       <span class="show_rate">Rating: <%= rating_for @area, "facility", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
       <span class="show_rate">Safety: <%= rating_for @area, "safety", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
