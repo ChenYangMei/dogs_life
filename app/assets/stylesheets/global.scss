@@ -119,3 +119,21 @@ main {
 #sign_in img{
   width: 200px;
 }
+
+.live_directions{
+  width: 60%;
+  margin: 3em auto;
+
+  .live_directions_button{
+
+    padding: 2em;
+
+    a{
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+  }
+
+
+}

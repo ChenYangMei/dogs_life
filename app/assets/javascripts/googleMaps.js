@@ -161,11 +161,6 @@ function calcRoute(lat,lng) {
       }
 
       if ( response.routes[0] ) {
-        for ( var i = 0; i < response.routes[0].legs[0].steps.length; i++ ) {
-          var currentStep = response.routes[0].legs[0].steps[i];
-          $("body").append( currentStep.instructions );
-          $("body").append( "<br />" );
-        }
 
         // Link to Google Directions
         var destination = response.routes[0].legs[0].end_address;
@@ -175,7 +170,14 @@ function calcRoute(lat,lng) {
           href: url,
           target: "_blank"
         }).text("Live directions to here");
-        $("body").append( $a );
+        $(".live_directions_button").append( $a );
+
+        for ( var i = 0; i < response.routes[0].legs[0].steps.length; i++ ) {
+          var currentStep = response.routes[0].legs[0].steps[i];
+          $(".live_directions").append( currentStep.instructions );
+          $(".live_directions").append( "<br />" );
+        }
+
       }
     });
   });
