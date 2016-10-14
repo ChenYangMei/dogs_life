@@ -131,7 +131,7 @@ $(document).ready(function(){
     // console.log(data);
     var $display = $("<div>");
     var $name;
-    if (data.name) {
+    if (data.name !== null) {
       $name = $("<p></p>").text("Created by: " + data.user.name);
     }else{
       $name = $("<p></p>").text("Created by: " + data.user.user_name);
