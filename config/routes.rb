@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/.well-known/acme-challenge/:id' => 'areas#letsencrypt'
+
   post '/rate' => 'rater#create', :as => 'rate'
   root 'areas#index'
   resources :users

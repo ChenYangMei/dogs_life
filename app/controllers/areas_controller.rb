@@ -1,5 +1,10 @@
 class AreasController < ApplicationController
 
+  def letsencrypt
+    # use your code here, not mine
+    render text: "-yZO0CPZveqC0nsKIDH8iv9dVH9aa0-8MwXVtHxypb8.W3it1ux4_Gmb42SL6cq-HjemLv9XrIMuu7zm9ATtQRc"
+  end
+
   def index
     if params[:search].present?
       @areas = Area.near(params[:search], 50)
