@@ -1,28 +1,30 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my final project built the last week of studying with General Assembly's three months full time Web Development Immersive course. The application is currently hosted on Heroku with customized a domain name and a SSL certificate. It is an ongoing project. https://www.ihoundit.com/
 
-Things you may want to cover:
+The purpose of this application is to help people add information about, search for, navigate to and review on dog leash free areas, as I myself am a dog (Brittany in particular) enthusiast.
 
-* Ruby version
+* Technologies Used
+  - Postgres v 9.4
+  - Rails v 4.2.0
+  - Ruby v 2.2.3
+  - Javascript
+  - jQuery
+  - Ajax
+  - HTML5
+  - CSS3
+  - Git
 
-* System dependencies
+* Technologies & API used
+  - Heroku (Host)
+  - Facebook Login
+  - Google Maps API
+  - Google Maps Auto Complete Search Box
+  - Google Maps Marker
+  - Google Maps CalcRoute
+  - Geocoder on Rails
+  - Cloudinary
+  - Dropzone
+  - RatyRate
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Thank you for stopping by.
