@@ -1,6 +1,6 @@
 == README
 
-This is my final project built the last week of studying with General Assembly's three months full time Web Development Immersive course. The application is currently hosted on Heroku with customized a domain name and a SSL certificate. It is an ongoing project. https://www.ihoundit.com/
+This is my final project built the last week of studying with General Assembly's three months full time Web Development Immersive course. The application is currently hosted on Heroku with customized a domain name and a SSL certificate. It is an ongoing project. https://www.ihoundit.com
 
 The purpose of this application is to help people add information about, search for, navigate to and review on dog leash free areas, as I myself am a dog (Brittany in particular) enthusiast.
 
