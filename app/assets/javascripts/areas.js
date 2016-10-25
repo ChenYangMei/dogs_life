@@ -1,6 +1,8 @@
 var myDropzone = false;
 
 $(document).ready(function(){
+
+
   Dropzone.autoDiscover = false;
 
   console.log("bla");
