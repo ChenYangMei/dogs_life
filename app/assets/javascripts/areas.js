@@ -131,7 +131,7 @@ $(document).ready(function(){
     .on( "ajax:error", handleError );
 
 
-
+ 
   // Display Images with Slick
 
   if ($("#images-div").length > 0) {
