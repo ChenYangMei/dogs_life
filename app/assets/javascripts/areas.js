@@ -5,7 +5,7 @@ $(document).ready(function(){
 
   Dropzone.autoDiscover = false;
 
-  console.log("bla");
+  // console.log("bla");
   $("body").on('click', "#directions", function(){
     console.log("hey");
     // console.log(this);
@@ -101,32 +101,6 @@ $(document).ready(function(){
 
   $.cloudinary.config({ cloud_name: 'drubv9lgc', api_key: '248327675289238'});
 
-  // Display Image
-
-  if ($("#images-div").length > 0) {
-    var currentURL = window.location.pathname;
-    var newURL = currentURL + '/images';
-    console.log(newURL);
-    $.ajax({
-      url: newURL,
-      method: "GET",
-      dataType: "JSON"
-    }).done(function (data) {
-      for (var i = 0; i < data.images.length; i++) {
-        var image = $.cloudinary.image(data.images[i].public_id, {class: "fade"});
-        $("#images-div").append(image);
-      }
-      $('.fade').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        arrows: true,
-        cssEase: 'linear'
-      });
-    });
-  }
-
 
   // Reviews
   var handleData = function (e, data) {
@@ -157,12 +131,41 @@ $(document).ready(function(){
     .on( "ajax:error", handleError );
 
 
+
+  // Display Images with Slick
+
+  if ($("#images-div").length > 0) {
+    var currentURL = window.location.pathname;
+    var newURL = currentURL + '/images';
+    console.log(newURL);
+    $.ajax({
+      url: newURL,
+      method: "GET",
+      dataType: "JSON"
+    }).done(function (data) {
+      console.log(data);
+      for (var i = 0; i < data.images.length; i++) {
+        var image = $.cloudinary.image(data.images[i].public_id, {class: "fade"});
+        $("#images-div").append(image);
+      }
+      $('.fade').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        arrows: true,
+        cssEase: 'linear'
+      });
+    });
+  }
+
+
   // Drop Zone
 
   if ( $("form.dropzone").length !== 0) {
     Dropzone.options.myAwesomeDropzone = {
       paramName: "file", // The name that will be used to transfer the file
-      maxFilesize: 2, // MB
+      maxFilesize: 5, // MB
       parallelUploads: 6,
   	  url: 'https://api.cloudinary.com/v1_1/cloud9/image/upload',
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 
 * {
   margin: 0;
@@ -5,70 +7,91 @@
 }
 
 body {
-  background-image: image-url("background.jpg");
+  background-color: #eeeeee;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
+// Links
 a {
   text-decoration: none;
   color: black;
-  font-size: 1.2em;
 }
+a:hover {
+  color: #0FA0CE; }
+
+
+// Nav
+
 nav{
-  text-align: center;
-  background-color: gainsboro;
+  background-color: #8ccce2;
+  font-size: 1.2em;
+  color: ghostwhite;
   position: fixed;
   top: 0;
   width: 100%;
-  font-size: 1.2em;
+  font-size: 1em;
   z-index: 10000;
 
   a{
-    padding: 0 1em;
-    color: #0f406b;
+    color: ghostwhite;
+  }
+  a:hover{
+    color: grey;
+    cursor: pointer;
   }
 
   .logo img{
-    width: 50px;
-    padding-top: 1em;
+    width: 200px;
   }
 
-  #left {
-    text-align: left;
+  .logo{
     display: inline-block;
+    width: 39%;
+    padding: .3em;
   }
 
-  #right {
+  .links{
+    display: inline-block;
+    width: 59%;
     text-align: right;
-    padding-right: 5em;
-    display: inline-block;
   }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  li{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 1em;
+  }
+
 }
 
-.search{
-  #search{
-    margin: 0, auto;
-  }
-}
+
+// Search Page
+
 
 main {
-  margin: 8em auto;
 
   .search {
-    margin: 1em auto;
+    margin: 0 auto;
   }
+
+  #map {
+    margin: 2em auto;
+    width: 50vw;
+    height: 50vw;
+  }
+
 }
 
-.logo {
-  top: 1em;
-  left: 2em;
-  padding: 1em 2em;
-}
 
-#map {
-  margin: 2em auto;
-  width: 50vw;
-  height: 50vw;
-}
 .show_rate {
   display: inline-block;
 }
@@ -136,4 +159,24 @@ main {
   }
 
 
+}
+
+footer{
+  background-color: #caa86b;
+}
+
+
+
+
+
+@media (max-width: 800px){
+  main {
+    padding-top: 5em;
+
+    #map {
+      margin: 2em auto;
+      width: 70vw;
+      height: 70vw;
+    }
+  }
 }

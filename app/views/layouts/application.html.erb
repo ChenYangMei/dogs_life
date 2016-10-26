@@ -28,23 +28,38 @@
 <body>
 
   <nav>
-    <div class="container">
-      <div class="row">
-        <div class="one column" id="left">
-          <%= link_to image_tag("logo.gif"), root_path, class: "logo" %>
-        </div>
 
-        <div class="eleven column" id="right">
-          <%= link_to "Add an Area", new_area_path %>
-          <% if current_user %>
-            Welcome <strong><%= current_user.name %><%= current_user.user_name %></strong>!
-            <%= link_to "Log out", logout_path, id: "log_out", :method => :delete %>
-          <% else %>
-            <%= link_to "Log In", login_path %>
-            <%= link_to "Sign Up", new_user_path %>
-          <% end %>
-        </div>
+    <div class="logo">
+      <%= link_to image_tag("logo_two.png"), root_path, class: "logo" %>
     </div>
+
+    <div class="links">
+      <ul>
+        <li>
+          <%= link_to "Add an Area", new_area_path %>
+        </li>
+
+        <% if current_user %>
+          <li>
+            Welcome <strong><%= current_user.name %><%= current_user.user_name %></strong>!
+          </li>
+
+          <li>
+            <%= link_to "Log out", logout_path, id: "log_out", :method => :delete %>
+          </li>
+
+        <% else %>
+          <li>
+            <%= link_to "Log In", login_path %>
+          </li>
+
+          <li>
+            <%= link_to "Sign Up", new_user_path %>
+          </li>
+        <% end %>
+
+      </ul>
+
 
     </div>
 
@@ -64,8 +79,13 @@
 
   <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
-  <div class="container">
+  <div class="">
     <%= yield %>
   </div>
+
+
+  <footer>
+
+  </footer>
 </body>
 </html>

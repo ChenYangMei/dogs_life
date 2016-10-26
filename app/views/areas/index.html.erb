@@ -1,4 +1,9 @@
 <main class="general">
+
+  <!-- <div class="text">
+    At I Hound It, we believe life is better when you share it with your dog. That's why we are passionate about helping people find parks, beaches and other amazing places where the whole family can safely relax and enjoy life together.
+  </div> -->
+
   <div class="search">
     <%= form_tag areas_path, :method => :get, :id => 'search' do %>
         <%= text_field_tag :search, params[:search], size:"50", placeholder:"Find adventures for your Furiends" %>
@@ -7,12 +12,18 @@
 
   </div>
 
-  <div id="map"></div>
+
+  <div id="map">
+
+  </div>
+
 
   <div class="live_directions">
+
     <div class="live_directions_button">
 
     </div>
 
   </div>
+
 </main>

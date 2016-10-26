@@ -27,7 +27,7 @@
     <div class="area_details">
       <h4><%= @area.name %></h4>
 
-      <p>Size: <%= @area.address %></p>
+      <p>Address: <%= @area.address %></p>
       <p>Facilities:
         <% @area.facilities.each do |facility| %>
           <span><%= facility.name %></span> |
@@ -38,11 +38,13 @@
           <span><%= terrain.name %></span> |
         <% end %>
       </p>
-      <p><%= @area.size %></p>
+      <% if @area.size %>
+        <p>Size: <%= @area.size %></p>
+      <% end %>
       <% if @area.open_at_all_times == true %>
-        <p>Open at All Times</p>
+        <p>Open Times: Open at All Times</p>
       <% else %>
-        <p><%= @area.open_times %></p>
+        <p>Open Times: <%= @area.open_times %></p>
       <% end %>
     </div>
 
@@ -64,7 +66,7 @@
         Safety: <%= rating_for @area, 'safety' %>
       </div>
       <br>
-      <h5>Rate this Park Here:</h5>
+      <h5>Your Rating:</h5>
       <span class="show_rate">Overall: <%= rating_for @area, "over_all", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
       <span class="show_rate">Rating: <%= rating_for @area, "facility", disable_after_rate: true, imdb_avg: true, cancel: true %></span>
       <span class="show_rate">Safety: <%= rating_for @area, "safety", disable_after_rate: true, imdb_avg: true, cancel: true %></span>

@@ -106,7 +106,7 @@ function initMap() {
       latitude = results[0].geometry.location.lat();
       longitude = results[0].geometry.location.lng();
     }
-    console.log( latitude, longitude );
+    // console.log( latitude, longitude );
     map = new google.maps.Map(document.getElementById('map'), {
 
       center: {
@@ -140,7 +140,7 @@ function calcRoute(lat,lng) {
   navigator.geolocation.getCurrentPosition(function(position) {
     myLat = position.coords.latitude;
     myLng = position.coords.longitude;
-    console.log(myLat, myLng);
+    // console.log(myLat, myLng);
 
     var request = {
       origin: {
@@ -183,5 +183,3 @@ function calcRoute(lat,lng) {
   });
 
 }
-
-  console.log("hello");
