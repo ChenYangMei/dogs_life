@@ -45,8 +45,8 @@ function placeMarkers(data){
      maxWidth: 200
    });
 
-  var latitude = data.latitude;
-  var longitude = data.longitude;
+  var latitude = parseFloat(data.latitude);
+  var longitude = parseFloat(data.longitude);
   var cordinate = {lat: latitude, lng: longitude};
 
   var marker = new google.maps.Marker({
