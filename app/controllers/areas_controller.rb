@@ -33,12 +33,13 @@ class AreasController < ApplicationController
   end
 
   def create
-
+    # raise 'banana'
     @area = Area.new(area_params)
     @area.user_id = current_user.id
     @area.facility_ids = params[:area][:facility_ids]
     @area.terrain_ids = params[:area][:terrain_ids]
     @area.open_at_all_times = params[:open_at_all_times]
+    @area.size = params[:size]
 
     if @area.open_at_all_times == false
       if params[:open_two].present? && params[:close_two].present? && params[:open_two] != "false" && params[:close_two] != "false"
