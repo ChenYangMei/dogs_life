@@ -67,6 +67,7 @@ class AreasController < ApplicationController
 
   def update
     @area = Area.find params[:id]
+    @area.size = params[:size]
 
     respond_to do |format|
       if @area.update(area_params)

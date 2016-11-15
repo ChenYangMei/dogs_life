@@ -28,20 +28,23 @@
       <h4><%= @area.name %></h4>
 
       <p>Address: <%= @area.address %></p>
-      <p>Size: <%= @area.size %></p>
+
+      <% if @area.size %>
+        <p>Size: <%= @area.size %></p>
+      <% end %>
+
       <p>Facilities:
         <% @area.facilities.each do |facility| %>
           <span><%= facility.name %></span> |
         <% end %>
       </p>
+
       <p>Terrains:
         <% @area.terrains.each do |terrain| %>
           <span><%= terrain.name %></span> |
         <% end %>
       </p>
-      <% if @area.size %>
-        <p>Size: <%= @area.size %></p>
-      <% end %>
+
       <% if @area.open_at_all_times == true %>
         <p>Open Times: Open at All Times</p>
       <% else %>
