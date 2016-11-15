@@ -5,6 +5,7 @@
 .slick-slider {
   width: 500px;
   margin: 0 auto;
+  height: auto;
 }
 
 .slick-prev:before, .slick-next:before {
@@ -14,4 +15,3 @@
 .show_rate > div:not(.star) {
   background-image: image-url('mid-star.png') !important;
 }
- 

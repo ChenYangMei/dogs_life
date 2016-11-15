@@ -131,7 +131,7 @@ $(document).ready(function(){
     .on( "ajax:error", handleError );
 
 
- 
+
   // Display Images with Slick
 
   if ($("#images-div").length > 0) {
@@ -154,7 +154,7 @@ $(document).ready(function(){
         speed: 500,
         fade: true,
         arrows: true,
-        cssEase: 'linear'
+        cssEase: 'linear',
       });
     });
   }

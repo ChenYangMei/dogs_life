@@ -38,7 +38,7 @@ function placeMarkers(data){
 
   var size = data.size;
 
-  var info = '<a href="/areas/' + data.id + '">' + name + '('+ official +')</a>' + '<p>Open Times: ' + openTimes + '</p>' + '<p>Size: ' + size + '</p>' + '<button id="directions" data-lat="'+ data.latitude +'" data-lng="' + data.longitude + '">Directions</button>';
+  var info = '<div class="infowindow"><p class="infowindow_title"><a href="/areas/' + data.id + '">' + name + '('+ official +')</a><p>' + '<p>Open Times: ' + openTimes + '</p>' + '<p>Size: ' + size + '</p></div>' + '<button id="directions" data-lat="'+ data.latitude +'" data-lng="' + data.longitude + '">Directions</button>';
 
   var infowindow = new google.maps.InfoWindow({
      content: info,
