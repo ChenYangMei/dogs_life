@@ -4,6 +4,8 @@ var directionsService;
 var directionsDisplay;
 var myLat;
 var myLng;
+var infowindow;
+var infowindowOpen = false;
 
 var initAutoComplete = function () {
   var input = $('.search input[type="text"]')[0];
@@ -40,11 +42,6 @@ function placeMarkers(data){
 
   var info = '<div class="infowindow"><p class="infowindow_title"><a href="/areas/' + data.id + '">' + name + '('+ official +')</a><p>' + '<p>Open Times: ' + openTimes + '</p>' + '<p>Size: ' + size + '</p></div>' + '<button id="directions" data-lat="'+ data.latitude +'" data-lng="' + data.longitude + '">Directions</button>';
 
-  var infowindow = new google.maps.InfoWindow({
-     content: info,
-     maxWidth: 200
-   });
-
   var latitude = parseFloat(data.latitude);
   var longitude = parseFloat(data.longitude);
   var cordinate = {lat: latitude, lng: longitude};
@@ -54,8 +51,21 @@ function placeMarkers(data){
     map: map,
   });
 
-  marker.addListener('click', function() {
+  google.maps.event.addListener(marker, 'click', function() {
+
+    if (infowindowOpen === true) {
+      infowindow.close();
+    }
+    infowindow = new google.maps.InfoWindow({
+       content: info,
+       maxWidth: 200
+    });
+    infowindowOpen = true;
     infowindow.open(map, marker);
+  });
+
+  google.maps.event.addListener(map, "click", function(event) {
+    infowindow.close();
   });
 
 }

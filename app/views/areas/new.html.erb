@@ -33,7 +33,7 @@
 
     <p>
       <%= f.label :size, "Approximate Size" %>
-      <%= select_tag(:size, options_for_select([['', nil], ['Small (Smaller than 2 Rugby Fields)', 'Small'], ['Medium (2 to 5 Rugby Fields)', 'Medium'], ['Big (5 to 10 Rugby Fields)', 'Big'], ['Enormous (Bigger than 10 Rugby Fields)', 'Enormous'] ])) %>
+      <%= select_tag(:size, options_for_select([['Not Sure', 'Not Sure'], ['Small (Smaller than 2 Rugby Fields)', 'Small'], ['Medium (2 to 5 Rugby Fields)', 'Medium'], ['Big (5 to 10 Rugby Fields)', 'Big'], ['Enormous (Bigger than 10 Rugby Fields)', 'Enormous'] ])) %>
     </p>
 
     <p onchange="openAtAllTimes(event);">
