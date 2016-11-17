@@ -23,7 +23,7 @@ a:hover {
 // Nav
 
 nav{
-  background-color: #8ccce2;
+  background-color: #204a87;
   font-size: 1.2em;
   color: ghostwhite;
   position: fixed;
@@ -73,29 +73,57 @@ nav{
 
 }
 
+.general {
+  width: 90vw;
+  margin: 100px auto;
+}
 
 // Search Page
 
-
 main {
+  display: flex;
 
-  .search {
-    margin: 0 auto;
+  .search_and_map{
+    width: 70%;
+
+    .search{
+      text-align: center;
+    }
+
+    #search{
+      margin: 0;
+    }
+
+    #map{
+      height: 45vw;
+    }
   }
 
-  #map {
-    margin: 2em auto;
-    width: 50vw;
-    height: 50vw;
+  .text_and_directions{
+    width: 30%;
+    margin: 0 auto;
+    padding: 0 2em;
+
+    .text{
+      background-color: #a8bede;
+      margin-top: 4em;
+      border: 2px black groove;
+      padding: 1em;
+      border-radius: 20px;
+    }
+
+    .dog_pic{
+      position: absolute;
+      right: 5vw;
+      bottom: 5vw;
+    }
   }
 
 }
-
 
 .show_rate {
   display: inline-block;
 }
-
 
 .show {
   margin: 8em auto;
@@ -133,11 +161,6 @@ main {
 
 }
 
-
-.general {
-  width: 50%;
-  margin: 10vw auto;
-}
 
 #sign_in img{
   width: 200px;
